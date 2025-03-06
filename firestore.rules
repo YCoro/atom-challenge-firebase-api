@@ -1,0 +1,24 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Tasks collection rules
+    match /tasks/{taskId} {
+      // Allow reading tasks for everyone (application logic will filter)
+      allow read: if true;
+      // Allow creating tasks for everyone (application logic will handle authentication)
+      allow create: if true;
+      // Allow updating/deleting tasks (application logic will handle authentication)
+      allow update, delete: if true;
+    }
+    
+    // Users collection rules
+    match /users/{userId} {
+      // Allow reading user data
+      allow read: if true;
+      // Allow creating users
+      allow create: if true;
+      // Allow updating/deleting users
+      allow update, delete: if true;
+    }
+  }
+} 
